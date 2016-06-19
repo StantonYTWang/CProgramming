@@ -1,9 +1,19 @@
+/*
+big number multiple : 100 as a unit
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int num[1500];
 int answer[1500];
+
+void init()
+{
+        headflag = 0;
+        memset(num, 0, sizeof(num));
+        memset(answer, 0, sizeof(answer));
+}
 
 void BigNumMul(int *num, int n, int *answer)
 {
@@ -20,13 +30,10 @@ void BigNumMul(int *num, int n, int *answer)
 int main()
 {
     int n, i, headflag;
-    freopen("623.in", "r", stdin);
-    freopen("623_test.out", "w", stdout);
 
     while(scanf("%d", &n) != EOF){
-        headflag = 0;
-        memset(num, 0, sizeof(num)/sizeof(int));
-        memset(answer, 0, sizeof(answer)/sizeof(int));
+        init();
+        /*start big number multiplication*/
         num[0] = 1;
         for(i=1; i<n; i++){
             BigNumMul(num, i, num);

@@ -57,12 +57,15 @@ void dfs(int x, int y, int moves)
 
 	diff = findDiff();
 	if(diff == 0){
+		/*if diff==0, reach the final state*/
 		min = moves;
 		return;
 	}else if(diff/2 + moves >= min){
+		/*exceed the bound, return*/
 		return;
 	}
 
+	/*try the 8 ways of movement*/
 	for(dir=0; dir<8; dir++){
 		x_next = x + dx[dir];
 		y_next = y + dy[dir];

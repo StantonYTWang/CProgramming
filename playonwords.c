@@ -1,3 +1,7 @@
+/*
+Euler path :
+treat a word 'name' as a directied edge from n to e
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -46,11 +50,11 @@ int main()
 			len = strlen(word);
 			i = word[0] - 'a';
 			j = word[len - 1] - 'a';
-			map[i][j]++;	/*construct map, add outdeg of i and indeg of j */
+			map[i][j]++;	/*construct map, add 1 to out-degree of i and in-degree of j */
 			outdeg[i]++;
 			indeg[j]++;
 		}
-		/*find start point and end point, also check for the graph is usable or not*/
+		/*find start point and end point, find the number of invalid node recorded in diff*/
 		for(i=0; i<26; i++){
 			if(indeg[i] + 1 == outdeg[i]){
 				/*out-degree is 1 more than in-degree : start vertex*/
@@ -61,12 +65,12 @@ int main()
 				end = i;
 				endNum++;
 			}else{
-				/*check for the vertex which in!=out and not start or end*/
+				/*check for the vertex which is invalid*/
 				if(indeg[i] != outdeg[i])
 					diff++;
 			}
 		}
-		if(startNum==1 && endNum==1 && diff==0){
+		if(startNum==1 && endNum==1 && diff==0){	/*one start and one end and no invalid node*/
 			answer = 1;
 			walk(start);
 			for(i = 0; i < 26; i++) {
@@ -77,7 +81,7 @@ int main()
                 			}
             			}
 		}else {
-			if(startNum==0 && endNum==0 && diff==0){
+			if(startNum==0 && endNum==0 && diff==0){	/*no start, end and invalid , just pick one start then walk*/
 				answer = 1;
 				for(i=0; i<26; i++){
 					if(indeg[i])

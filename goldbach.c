@@ -19,8 +19,10 @@ void primeTable()
 	int i, j;
 	for(i=3; i<1000000; i+=2){
 		if(notPrime[i] == 0){
+			/*record the number of prime, store prime in prime[]*/
 			prime[primeCnt] = i;
 			primeCnt++;
+			/*mark the number which is not a prime as not prime*/
 			for(j=3; i*j<1000000; j+=2){
 				notPrime[i*j] = 1;
 			}
@@ -33,12 +35,13 @@ int main()
 	int num, x, y, i;
 
 	init();
-	primeTable();
+	primeTable();	/*produce the prime number table*/
 	while(1){
 		scanf("%d", &num);
 		if(num == 0)	break;
 		flag = 0;
 		for(i=0; i<primeCnt; i++){
+			/*choose a prime x and calculate num - x = y, if x and y are both prime, sure is the answer*/
 			x = prime[i];
 			y = num - x;
 			if(x > y)	break;

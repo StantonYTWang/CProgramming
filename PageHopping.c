@@ -1,14 +1,18 @@
+/*
+all-pair-shortest-path
+weight() floyd-warshall()
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-int map[101][101], maxpnum, page[101], pagecnt;
+int map[101][101], maxpnum, page[101], pageCnt;
 
 void init()
 {
 	memset(map, 0, sizeof(map));
 	maxpnum = 0;
-	pagecnt = 0;
+	pageCnt = 0;
 	memset(page, 0, sizeof(page));
 }
 
@@ -18,11 +22,11 @@ void putInMap(int a, int b)
 	if(b > maxpnum)	maxpnum = b;
 	if(page[a] != 1){
 		page[a] = 1;
-		pagecnt++;
+		pageCnt++;
 	}
 	if(page[b] != 1){
 		page[b] = 1;
-		pagecnt++;
+		pageCnt++;
 	}
 	map[a][b] = 1;
 
@@ -80,8 +84,8 @@ int main()
 		}
 		weight();
 		FW();
-		sum = countSum();
-		printf("Case %d: average length between pages = %1.3f clicks\n", testcase, (float)sum/(float)(pagecnt*(pagecnt-1)));
+		sum = countSum();	/*calculate all the value of all-pair-shorteset-path*/
+		printf("Case %d: average length between pages = %1.3f clicks\n", testcase, (float)sum/(float)(pageCnt*(pageCnt-1)));
 	}
 
 	return 0;

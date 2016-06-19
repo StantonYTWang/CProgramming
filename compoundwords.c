@@ -1,3 +1,7 @@
+/*
+binary search 
+use c standard bsearch, need to write the compare function by yourself
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,11 +25,13 @@ int main()
 	}
 	for(i=0; i<wordCnt; i++){
 		for(j=i+1; j<wordCnt; j++){
+			/*check if words[i] is prefix of words[j]*/
 			if(isCompound[j] == 1)
 				continue;
 			else if(strncmp(words[i], words[j], strlen(words[i])) == 0){
+				/*find suffix of words[j] in other words*/
 				wptr = bsearch(words[j]+strlen(words[i]), words, wordCnt, 50, cmp);
-				if(wptr != NULL)
+				if(wptr != NULL)	/*found!*/
 					isCompound[j] = 1;
 			}else {
 				break;

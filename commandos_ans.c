@@ -1,3 +1,7 @@
+/*
+use all-pair-shortest-path
+weigth() and floyd-warshall()
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,7 +32,7 @@ int main() {
         for(i = 0; i < n; i++)
             for(j = 0; j < n; j++)
                 if(i != j)
-                    map[i][j] = 0xffff; /*weitht()*/
+                    map[i][j] = 0xffff; /*weitht() : i!=j and no path between i, j place 256 as infinite*/
                 while(m--) {
                     scanf("%d %d", &i, &j);
                     map[i][j] = 1;
@@ -39,8 +43,10 @@ int main() {
                     for(i = 0; i < n; i++)
                         for(j = 0; j < n; j++)
                             map[i][j] = min(map[i][k]+map[k][j], map[i][j]);    /*Floyd-Warshall*/
-                        for(i = 0; i < n; i++)
+                        for(i = 0; i < n; i++){
+                            /*walk from start to finish try all the possible node in middle, find max path*/
                             ans = max(ans, map[start][i]+map[i][finish]);
+                        }
                         printf("Case %d: %d\n", ++cases, ans);
                     }
                     return 0;

@@ -4,8 +4,9 @@
 char g[15][15];
 int lights[15][15], res;
 
-void press(int x, int y) 
+void press(int x, int y)
 {
+	/*press xy, apply the rule to other xy*/
 	lights[x][y] = !lights[x][y];
 	if(x-1 >= 0)    lights[x-1][y] = !lights[x-1][y];
 	if(x+1 < 10)    lights[x+1][y] = !lights[x+1][y];
@@ -15,7 +16,10 @@ void press(int x, int y)
 
 void dfs(int x, int y, int step) 
 {
-	if(y == 10)  x++, y = 0;
+	if(y == 10){
+		x++;
+		y = 0;
+	}
 	if(step >= res) return;
 	if(x == 0) {
 		dfs(x, y+1, step);
